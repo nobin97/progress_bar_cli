@@ -2,6 +2,7 @@ import os
 import random
 from subprocess import call
 import time
+from colors import color_and_codes as c_code
 
 
 class ProgressBar:
@@ -15,27 +16,6 @@ class ProgressBar:
     bar = ""
     half_bar_length = 0
     full_bar_length = 0
-    colors = {
-        'red': '\033[91m',
-        'yellow': '\033[93m',
-        'green': '\033[92m',
-        'invisible': '\033[08m',
-        'bold': '\033[01m',
-        'end': '\033[0m',
-        'dim': "\033[2m",
-        'blue': "\033[34m",
-        'magenta': "\033[35m",
-        'cyan': "\033[36m",
-        'light-gray': "\033[37m",
-        'dark-gray': "\033[90m",
-        'light-red': "\033[91m",
-        'light-green': "\033[92m",
-        'light-yellow': "\033[93m",
-        'light-blue': "\033[94m",
-        'light-magenta': "\033[95m",
-        'light-cyan': "\033[96m",
-        'white': "\033[97m"
-    }
 
     def __init__(
             self,
@@ -50,11 +30,11 @@ class ProgressBar:
         ic_char = incomplete_character
         ic_color = incomplete_color
         self.bar_length = bar_length
-        self.theme_color = self.colors.get(theme_color, None) if theme_color else None
+        self.theme_color = c_code.get(theme_color, None) if theme_color else None
         if ip_color:
-            ip_color = self.colors.get(ip_color, None)
+            ip_color = c_code.get(ip_color, None)
         if ic_color:
-            ic_color = self.colors.get(ic_color, None)
+            ic_color = c_code.get(ic_color, None)
         self.in_progress = [
             ip_color + "\033[01m" + ip_char + "\033[0m" if ip_color else ip_char for _ in range(bar_length)]
         self.incomplete = [
@@ -102,7 +82,7 @@ class ProgressBar:
             if value > final:
                 print("Value shouldn't be greater than final!")
                 return
-            self.print_bar(value + 1, final)
+            self.print_bar(value, final)
             if delay:
                 time.sleep(delay() if rand else delay)
             return

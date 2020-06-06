@@ -1,0 +1,21 @@
+color_and_codes = {
+    'red': "\033[91m",
+    'yellow': "\033[93m",
+    'green': "\033[92m",
+    'invisible': "\033[08m",
+    'bold': "\033[01m",
+    'end': "\033[0m",
+    'dim': "\033[2m",
+    'blue': "\033[34m",
+    'magenta': "\033[35m",
+    'cyan': "\033[36m",
+    'light-gray': "\033[37m",
+    'dark-gray': "\033[90m",
+    'light-red': "\033[91m",
+    'light-green': "\033[92m",
+    'light-yellow': "\033[93m",
+    'light-blue': "\033[94m",
+    'light-magenta': "\033[95m",
+    'light-cyan': "\033[96m",
+    'white': "\033[97m"
+}
