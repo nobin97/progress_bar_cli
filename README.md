@@ -6,12 +6,13 @@
 ```
   from progress_bar import ProgressBar
   pbr = ProgressBar()
-  for i in range(10):
-      pbr.progress_bar(value=i, final=10)                 // shows progress using progress bar
+  limit = 10
+  for i in range(limit + 1):
+      pbr.progress_bar(value=i, final=limit)                 // shows progress using progress bar
       or
-      pbr.progress_bar(value=i, final=10, delay="random") // shows progress with a random delay
+      pbr.progress_bar(value=i, final=limit, delay="random") // shows progress with a random delay
       or
-      pbr.progress_bar(value=i, final=10, delay=1)        // shows progress with a 1 sec delay
+      pbr.progress_bar(value=i, final=limit, delay=1)        // shows progress with a 1 sec delay
 ```
 ## Customising Bar:
 Default Bar length is 100 chars, you can override it by:
