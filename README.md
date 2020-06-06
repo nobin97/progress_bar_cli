@@ -1,6 +1,6 @@
 # Progress Bar for CLIs
 
-### A simple Progress Bar written in python 3 for CLIs.
+### A simple progress bar for CLIs written in Python 3.
 
 ## Usage:
 ```
