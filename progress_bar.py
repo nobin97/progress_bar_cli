@@ -94,3 +94,16 @@ class ProgressBar:
             if delay:
                 time.sleep(delay() if use_random else delay)
             return
+
+
+pbr = ProgressBar(
+    description="Test description",
+    bar_length=50,
+    in_progress_color="green",
+    incomplete_color="red",
+    theme_color=["light-cyan", "italic", "bold"]
+)
+pbr.clear_screen = True
+limit = 20
+# for i in range(limit + 1):
+pbr.progress_bar(value=50, delay=.07)
