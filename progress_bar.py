@@ -22,8 +22,8 @@ class ProgressBar:
             bar_length=100,
             description=None,
             theme_color=None,
-            in_progress_color=None,
-            incomplete_color=None,
+            in_progress_color="",
+            incomplete_color="",
             in_progress_character="#",
             incomplete_character="_"):
         ip_char = in_progress_character
@@ -33,14 +33,10 @@ class ProgressBar:
         self.description = description
         self.bar_length = bar_length
         self.theme_color = self.get_theme_color(theme_color)
-        if ip_color:
-            ip_color = c_code.get(ip_color, None)
-        if ic_color:
-            ic_color = c_code.get(ic_color, None)
-        self.in_progress = [
-            ip_color + "\033[01m" + ip_char + "\033[0m" if ip_color else ip_char for _ in range(bar_length)]
-        self.incomplete = [
-            ic_color + "\033[01m" + ic_char + "\033[0m" if ic_color else ic_char for _ in range(bar_length)]
+        ip_color = c_code.get(ip_color, "")
+        ic_color = c_code.get(ic_color, "")
+        self.in_progress = [ip_color + "\033[01m" + ip_char + "\033[0m" for _ in range(bar_length)]
+        self.incomplete = [ic_color + "\033[01m" + ic_char + "\033[0m" for _ in range(bar_length)]
         self.bar = self.in_progress + self.incomplete
         self.half_bar_length = int(len(self.bar) / 2)
         self.full_bar_length = len(self.bar)
