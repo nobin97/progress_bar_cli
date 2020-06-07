@@ -18,6 +18,7 @@
 Default Bar length is 100 chars, you can override it by:
 ```
   pbr = ProgressBar(bar_length=50,   # A 50 chars long progress bar gets initialised
+    description="Test description",  # A description can be added like this
     in_progress_color="green",       # The color of the in_progress_character can be set like this
     incomplete_color="red",          # The color of the incomplete_character can be set like this
     in_progress_character="+",       # The value of the in_progress_character can be set like this
@@ -38,3 +39,44 @@ By default progress bar doesn't clear the screen while updating, override it by:
   ```
   pbr.clear_screen = False
   ```
+## Theme colors:
+A theme color can be set as a string or as a list of strings.
+```
+pbr = ProgressBar(
+    theme_color="yellow"
+    or
+    theme_color=["light-cyan", "italic", "bold"]
+)
+```
+You should provide the desired color first in the list and then the formatters.
+
+If you give multiple colors, the last one will be applied.
+
+#### The following colors and formatting can be used:
+```
+Colors:
+    'red',
+    'yellow',
+    'green',
+    'dim',
+    'blue',
+    'magenta',
+    'cyan',
+    'light-gray',
+    'dark-gray',
+    'light-red',
+    'light-green',
+    'light-yellow,
+    'light-blue',
+    'light-magenta',
+    'light-cyan',
+    'white'
+
+For extra formatting:
+    'italic',
+    'invisible',
+    'bold',
+    'underlined',
+    'reverse',
+    'hidden'
+```
