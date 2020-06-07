@@ -37,7 +37,7 @@ By default title is shown, you can make it invisible by:
 
 By default progress bar doesn't clear the screen while updating, override it by:
   ```
-  pbr.clear_screen = False
+  pbr.clear_screen = True
   ```
 ## Theme colors:
 A theme color can be set as a string or as a list of strings.
