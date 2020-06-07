@@ -81,6 +81,8 @@ For extra formatting:
     'hidden'
 ```
 # ScreenShots
+![progress_bar3](https://raw.githubusercontent.com/nobin97/progress_bar_cli/master/imgs/progress_bar3.png)
+
 ![progress_bar1](https://raw.githubusercontent.com/nobin97/progress_bar_cli/master/imgs/progress_bar1.png)
 
 ![progress_bar2](https://raw.githubusercontent.com/nobin97/progress_bar_cli/master/imgs/progress_bar2.png)
