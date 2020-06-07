@@ -1,6 +1,5 @@
 import os
 import random
-from subprocess import call
 import time
 from colors import color_and_codes as c_code
 
@@ -9,6 +8,7 @@ class ProgressBar:
     theme_color = None
     clear_screen = False
     show_title = True
+    description = ""
     title = "Progress Bar"
     bar_length = 100
     in_progress = ""
@@ -20,6 +20,7 @@ class ProgressBar:
     def __init__(
             self,
             bar_length=100,
+            description=None,
             theme_color=None,
             in_progress_color=None,
             incomplete_color=None,
@@ -29,8 +30,9 @@ class ProgressBar:
         ip_color = in_progress_color
         ic_char = incomplete_character
         ic_color = incomplete_color
+        self.description = description
         self.bar_length = bar_length
-        self.theme_color = c_code.get(theme_color, None) if theme_color else None
+        self.theme_color = self.get_theme_color(theme_color)
         if ip_color:
             ip_color = c_code.get(ip_color, None)
         if ic_color:
@@ -45,44 +47,50 @@ class ProgressBar:
 
     @staticmethod
     def clear():
-        _ = call('clear' if os.name == 'posix' else 'cls')
+        os.system('echo -e \\\\033c' if os.name == 'posix' else 'cls')
+
+    @staticmethod
+    def get_theme_color(inp):
+        if isinstance(inp, str):
+            return c_code.get(inp, "")
+        if isinstance(inp, list):
+            return "".join([c_code.get(item, "") for item in inp])
+        return ""
 
     def print_bar(self, value, final):
-        print(
-            self.theme_color + self.title + "\n\033[0m" if self.theme_color else self.title + "\n"
-        ) if self.show_title else None
+        if self.show_title:
+            print(self.theme_color + self.title + "\n\033[0m")
+        print(self.theme_color + self.description + "\n") if self.description else None
         percentage = int((value / final) * 100)
         bar_relative = int(self.half_bar_length * (percentage / 100))
         print("".join(self.bar[self.half_bar_length - bar_relative:self.full_bar_length - bar_relative]))
-        if self.theme_color:
-            print(self.theme_color + str(percentage) + "% Complete...\033[0m\n")
-        else:
-            print(percentage, "% Complete...\n", sep="")
+        print(self.theme_color + str(percentage) + "% Complete...\033[0m\n")
 
-    def progress_bar(self, value=None, final=100, delay=0):
-        rand = False
+    def progress_bar(self, value=None, final=100, delay=None):
+        use_random = False
         if delay == "random":
             delay = random.random
-            rand = True
+            use_random = True
         if self.bar_length < 1:
             print("At least a length of 1 is required!")
             return
 
         if value is None:
-            i = 0
-            while i <= final:
-                self.print_bar(i, final)
-                i += 1
-                if delay:
-                    time.sleep(delay() if rand else delay)
+            index = 0
+            while index <= final:
                 self.clear() if self.clear_screen else None
+                self.print_bar(index, final)
+                index += 1
+                if delay:
+                    time.sleep(delay() if use_random else delay)
             return
 
         if value >= 0:
             if value > final:
                 print("Value shouldn't be greater than final!")
                 return
+            self.clear() if self.clear_screen else None
             self.print_bar(value, final)
             if delay:
-                time.sleep(delay() if rand else delay)
+                time.sleep(delay() if use_random else delay)
             return

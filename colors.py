@@ -2,9 +2,6 @@ color_and_codes = {
     'red': "\033[91m",
     'yellow': "\033[93m",
     'green': "\033[92m",
-    'invisible': "\033[08m",
-    'bold': "\033[01m",
-    'end': "\033[0m",
     'dim': "\033[2m",
     'blue': "\033[34m",
     'magenta': "\033[35m",
@@ -17,5 +14,14 @@ color_and_codes = {
     'light-blue': "\033[94m",
     'light-magenta': "\033[95m",
     'light-cyan': "\033[96m",
-    'white': "\033[97m"
+    'white': "\033[97m",
+
+    # For extra formatting
+    'italic': "\x1b[3m",
+    'invisible': "\033[08m",
+    'bold': "\033[01m",
+    'underlined': "\x1b[4m",
+    'blink': "\x1b[5m",
+    'reverse': "\x1b[7m",
+    'hidden': "\x1b[8m",
 }
